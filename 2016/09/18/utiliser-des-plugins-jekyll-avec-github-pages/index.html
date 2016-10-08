@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="dns-prefetch" href="//fonts.googleapis.com/" data-proofer-ignore>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
+  <link rel="canonical" href="http://jekyll-fr.org/2016/09/18/utiliser-des-plugins-jekyll-avec-github-pages/">
+  <link rel="alternate" type="application/atom+xml" title="Jekyll-fr" href="/feed.xml">
+  <!-- Begin Jekyll SEO tag v2.0.0 -->
+<title>Utiliser des plugins Jekyll avec GitHub Pages - Jekyll-fr</title>
+<meta property="og:title" content="Utiliser des plugins Jekyll avec GitHub Pages">
+<meta name="description" content="Automatiser la publication du site généré sur GitHub Pages pour pouvoir utiliser les plugins Jekyll sans restriction.">
+<meta property="og:description" content="Automatiser la publication du site généré sur GitHub Pages pour pouvoir utiliser les plugins Jekyll sans restriction.">
+<link rel="canonical" href="http://jekyll-fr.org/2016/09/18/utiliser-des-plugins-jekyll-avec-github-pages/">
+<meta property="og:url" content="http://jekyll-fr.org/2016/09/18/utiliser-des-plugins-jekyll-avec-github-pages/">
+<meta property="og:site_name" content="Jekyll-fr">
+<meta property="og:image" content="http://jekyll-fr.org/assets/images/octojekyll.png">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2016-09-18T13:51:13+02:00">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@jekyll_fr">
+<meta name="twitter:creator" content="@DirtyF">
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Utiliser des plugins Jekyll avec GitHub Pages",
+    "image": "http://jekyll-fr.org/assets/images/octojekyll.png",
+    "datePublished": "2016-09-18T13:51:13+02:00",
+    "description": "Automatiser la publication du site généré sur GitHub Pages pour pouvoir utiliser les plugins Jekyll sans restriction.",
+    "url": "http://jekyll-fr.org/2016/09/18/utiliser-des-plugins-jekyll-avec-github-pages/"
+  }
+</script>
+<!-- End Jekyll SEO tag -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/favicons/apple-touch-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/assets/favicons/apple-touch-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/assets/favicons/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/assets/favicons/apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/assets/favicons/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/assets/favicons/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/assets/favicons/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/assets/favicons/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon-180x180.png">
+<link rel="icon" type="image/png" href="/assets/favicons/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/assets/favicons/android-chrome-192x192.png" sizes="192x192">
+<link rel="icon" type="image/png" href="/assets/favicons/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="/assets/favicons/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="/assets/favicons/manifest.json">
+<link rel="mask-icon" href="/assets/favicons/safari-pinned-tab.svg" color="#3f1f1f">
+<link rel="shortcut icon" href="/assets/favicons/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-TileImage" content="/assets/favicons/mstile-144x144.png">
+<meta name="msapplication-config" content="/assets/favicons/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+  
+    <script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-75833986-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+
+  
+</head>
+
+  <body>
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/"><span><img src="/assets/images/logo-2x.png" alt="Jekyll-fr"></span></a>
+
+    <nav class="site-nav">
+      <div class="trigger">
+        
+          
+        
+          
+        
+          
+          <a class="page-link" href="/">Communauté Jekyll francophone</a>
+          
+        
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Utiliser des plugins Jekyll avec GitHub Pages</h1>
+    
+    <p class="post-meta"><time datetime="2016-09-18T13:51:13+02:00" itemprop="datePublished">18
+
+septembre
+  
+ 2016
+</time>
+      
+       • <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <span itemprop="name">
+            <a class="post-author" rel="author" href="https://github.com/DirtyF"><img class="avatar avatar-small" src="https://avatars2.githubusercontent.com/DirtyF?v=3&amp;s=28" alt="DirtyF" srcset="https://avatars2.githubusercontent.com/DirtyF?v=3&amp;s=28 1x, https://avatars2.githubusercontent.com/DirtyF?v=3&amp;s=56 2x, https://avatars2.githubusercontent.com/DirtyF?v=3&amp;s=84 3x, https://avatars2.githubusercontent.com/DirtyF?v=3&amp;s=112 4x" width="28" height="28" data-proofer-ignore="true">Frank Taillandier</a>
+          </span>
+        </span>
+      
+    </p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>La popularité de Jekyll est en partie due à son support natif par GitHub Pages. Si cette solution gratuite est bien pratique, elle n’en reste pas moins limitée en terme de support de plugins Jekyll et ce pour des raisons de sécurité. Si vous voulez utiliser des plugins comme <a href="/2016/08/31/gestion-images-responsive-avec-jekyll-cloudinary/">jekyll-cloudinary</a> ou <a href="https://github.com/jekyll/jekyll-assets">jekyll-assets</a>, il vous faudra générer le site en local et le publier sur Github.</p>
+
+<p>Nous allons voir que cette opération est facilement automatisable à l’aide d’un fichier <code class="highlighter-rouge">Rakefile</code>, la manière la plus courante en Ruby de créer des tâches.</p>
+
+<h2 id="pr-requis">Pré-requis</h2>
+
+<p>Nous partons du principe que vous avez déjà un site qui tourne avec Jekyll sur GitHub, si ce n’est pas le cas, reportez-vous à la <a href="https://help.github.com/articles/using-jekyll-as-a-static-site-generator-with-github-pages/">documentation officielle</a>.</p>
+
+<p>Comme nous allons utiliser <code class="highlighter-rouge">rake</code> pour écrire une tâche automatisée, il vous faut ajoutez la dépendance à votre fichier <code class="highlighter-rouge">Gemfile</code>, si elle n’est pas déjà présente :</p>
+
+<div class="language-ruby highlighter-rouge">
+<pre class="highlight"><code>  <span class="n">gem</span> <span class="s2">"rake"</span>
+</code></pre>
+</div>
+
+<p>Une fois que c’est fait, lancez <code class="highlighter-rouge">bundle install</code> pour installer <code class="highlighter-rouge">rake</code>.</p>
+
+<p>Maintenant que vous êtes parés sous allons voir les deux cas de figures possibles dans Github : les pages utilisateurs ou organisation et les pages projets.</p>
+
+<h2 id="pages-utilisateur-et-organisation">Pages utilisateur et organisation</h2>
+
+<p>Pour activer la génération automatique par GitHub Pages d’un dépôt de compte utilisateur ou organisation, il suffit de respecter la nomenclature  <code class="highlighter-rouge">username/username.github.io</code>. Par exemple ce dépôt s’appelle <code class="highlighter-rouge">jekyll-fr/jekyll-fr.github.io</code>.</p>
+
+<p>GitHub va utiliser la branche <code class="highlighter-rouge">master</code> de ces dépôts et publier les pages. Cela fait que nous aurons une branche <code class="highlighter-rouge">master</code> qui contient le site généré et une branche <code class="highlighter-rouge">source</code> avec les sources de notre site.</p>
+
+<h3 id="configuration-du-dpt">Configuration du dépôt</h3>
+
+<p>La préparation du dépôt se résume à créer la branche <code class="highlighter-rouge">source</code> en ligne de commande :</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>$ git checkout -b source master
+$ git push -u origin source
+</code></pre>
+</div>
+
+<p>Maintenant que vous avez crée la branche <code class="highlighter-rouge">source</code>, vous pouvez en faire la branche par <em>défaut</em> dans GitHub :</p>
+
+<p><img src="/assets/images/default-branch-github.png" alt="Paramètrage des branches dans GitHub"></p>
+
+<h3 id="publication-automatique">Publication automatique</h3>
+
+<p>Maintenant que le dépôt est configuré, vous pouvez générer votre site et pousser les fichiers générés sur la branche <code class="highlighter-rouge">master</code>. Mais plutôt que de s’embêter à faire ça manuellement, créons un simple tâche <code class="highlighter-rouge">rake</code>.
+Créez (si vous n’en avez pas déjà un) un fichier <code class="highlighter-rouge">Rakefile</code> à la racine de votre site et ajoutez le contenu suivant <sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> :</p>
+
+<script src="https://gist.github.com/DirtyF/24cb9c96b64173ecd85578f38bcc940d.js"> </script>
+
+<p>Maintenant vous pouvez simplement lancer la commande <code class="highlighter-rouge">rake publish</code> pour générer et publier votre site sur GitHub Pages.</p>
+
+<p>Si vous utilisez un nom de domaine personnalisé, vérifiez bien que le fichier CNAME est bien présent dans la branche générée.</p>
+
+<h2 id="pages-projet">Pages projet</h2>
+
+<p>Les pages projet sont presque pareilles que les pages utilisateur et organisation, à une différence près : la branche <code class="highlighter-rouge">gh-pages</code> est utilisée à la place de la branche <code class="highlighter-rouge">master</code> pour générer et publier les pages.</p>
+
+<p>Il n’y a aucune configuration supplémentaire à faire, il faut simplement apporter quelques petites modifications au fichier <code class="highlighter-rouge">Rakefile</code> :</p>
+
+<script src="https://gist.github.com/DirtyF/2eacfb7ecec18b3b738af1c3c8d1fe5e.js"> </script>
+
+<p>Vous pouvez maintenant lancer <code class="highlighter-rouge">rake site:publish</code> pour générer votre site et le publier sur GitHub. Jetez également un coup d’œil au <a href="https://github.com/jekyll/jekyll/blob/master/rake/site.rake#L55">fichier Rakefile de Jekyll</a> pour une implémentation alternation de la tâche <code class="highlighter-rouge">rake site:publish</code>.</p>
+
+<p><img src="/assets/images/octojekyll.png" alt="octojekyll"></p>
+
+<p>Enfin, sachez qu’il existe d’autres solutions d’hébergement comme <a href="https://pages.gitlab.io/">GitLab Pages</a>, <a href="https://www.netlify.com">Netlify</a>, <a href="http://cloudcannon.com">Cloudcannon</a>, <a href="https://www.siteleaf.com/">Siteleaf</a> ou <a href="https://forestry.io/">Forestry.io</a> qui vous permettent d’utiliser les plugins de votre choix, sans avoir recours à ce genre de hack.</p>
+
+<h3 id="notes">Notes</h3>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>Les tâches utilisées dans ce billet ont été écrites par <a href="http://ixti.net/software/2013/01/28/using-jekyll-plugins-on-github-pages.html">Ixti</a>, le créateur du plugin <code class="highlighter-rouge">jekyll-assets</code>. <a href="#fnref:1" class="reversefootnote">↩</a></p>
+    </li>
+  </ol>
+</div>
+
+
+    <footer>
+      
+        <div id="disqus_thread"></div>
+<script>
+
+var disqus_config = function () {
+  this.page.url = 'http://jekyll-fr.org/2016/09/18/utiliser-des-plugins-jekyll-avec-github-pages/';
+  this.page.identifier = 'http://jekyll-fr.org/2016/09/18/utiliser-des-plugins-jekyll-avec-github-pages/';
+  this.page.title = 'Utiliser des plugins Jekyll avec GitHub Pages';
+};
+// DON'T EDIT BELOW THIS LINE
+(function() {
+var d = document, s = d.createElement('script');
+s.src = '//jekyllfr.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+
+      
+      <h2>Améliorez cet article</h2>
+      <p><a href="https://github.com/jekyll-fr/jekyll-fr.github.io/edit/source/_posts/2016-09-18-utiliser-des-plugins-jekyll-avec-github-pages.markdown">Éditez le contenu</a>.</p>
+    </footer>
+  </div>
+
+</article>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+    <div class="wrapper">
+
+        <div class="footer-col-wrapper">
+            <div class="footer-col footer-col-1">
+                <ul class="contact-list">
+                    <li>Jekyll-fr</li>
+                    <li><a href="mailto:contact@jekyll-fr.org">contact@jekyll-fr.org</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col footer-col-2">
+                <ul class="social-media-list">
+                    
+                    <li>
+                        <a href="https://jekyll-fr.herokuapp.com" title="Rejoindre jekyll-fr sur Slack"><span class="icon icon--slack"><svg viewbox="0 0 118 118" xmlns="http://www.w3.org/2000/svg"><title>Slack</title>
+<g fill="none" fill-rule="evenodd"><path d="M10.258 62.86c-4.395.032-8.118-2.587-9.49-6.674-.053-.16-.1-.314-.143-.466C-.87 50.484 2.03 45.008 7.23 43.255L90.613 15.32a11.31 11.31 0 0 1 3.046-.446c4.51-.036 8.33 2.64 9.74 6.816l.12.403c1.56 5.452-2.32 10.32-6.96 11.88l-82.92 28.31a10.88 10.88 0 0 1-3.39.576" fill="#70CADB"></path><path d="M24.157 103.867c-4.428.032-8.165-2.55-9.52-6.578-.05-.16-.1-.31-.143-.47a10.28 10.28 0 0 1 6.596-12.59l83.388-28.19a10.71 10.71 0 0 1 3.307-.56c4.442-.036 8.344 2.68 9.72 6.752l.13.426c.803 2.813.328 5.98-1.272 8.477-1.195 1.86-4.96 3.494-4.96 3.494L27.7 103.264c-1.165.39-2.355.593-3.54.604" fill="#E01765"></path><path d="M93.572 104.043a10.233 10.233 0 0 1-9.802-6.976L55.94 14.402l-.14-.465c-1.506-5.27 1.392-10.77 6.59-12.522a10.27 10.27 0 0 1 3.2-.542c1.608-.012 3.164.35 4.63 1.074a10.214 10.214 0 0 1 5.157 5.913l27.828 82.658.08.265c1.563 5.473-1.33 10.976-6.527 12.726-1.03.34-2.103.52-3.184.53" fill="#E8A723"></path><path d="M52.205 117.97a10.242 10.242 0 0 1-9.807-6.984L14.575 28.323a19.1 19.1 0 0 1-.14-.46 10.235 10.235 0 0 1 6.583-12.523 10.333 10.333 0 0 1 3.187-.535 10.24 10.24 0 0 1 9.805 6.98l27.824 82.664c.052.14.1.3.14.45a10.235 10.235 0 0 1-6.588 12.53 10.294 10.294 0 0 1-3.18.53" fill="#3EB890"></path><path d="M79.852 85.43l19.405-6.636-6.343-18.84-19.428 6.568 6.366 18.907" fill="#CC1F27"></path><path d="M38.55 99.55l19.402-6.633-6.39-18.982-19.424 6.567 6.41 19.05" fill="#361238"></path><path d="M66.037 44.396l19.407-6.625-6.268-18.62-19.444 6.52 6.305 18.73" fill="#65863A"></path><path d="M24.73 58.498l19.407-6.625-6.346-18.856-19.44 6.513 6.39 18.968" fill="#1A937D"></path></g></svg>
+</span><span class="username">jekyll-fr</span></a>
+
+                    </li>
+                    <li>
+                        <a href="https://github.com/jekyll-fr" title="Suivre jekyll-fr sur GitHub"><span class="icon icon--github"><svg viewbox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"></path></svg>
+</span><span class="username">jekyll-fr</span></a>
+
+                    </li>
+                     
+                    <li>
+                        <a href="https://twitter.com/jekyll_fr" title="Suivre jekyll_fr sur Twitter"><span class="icon icon--twitter"><svg viewbox="0 0 16 16"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"></path></svg>
+</span><span class="username">jekyll_fr</span></a>
+
+                    </li>
+                    
+
+                </ul>
+            </div>
+
+            <div class="footer-col footer-col-3">
+                <p>Communauté francophone des utilisateurs de Jekyll</p>
+            </div>
+        </div>
+
+    </div>
+
+</footer>
+
+  </body>
+</html>
